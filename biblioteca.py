@@ -12,8 +12,10 @@ if st.button("🔍 Buscar"):
         url = f"https://www.googleapis.com/books/v1/volumes?q={nome_livro}"
         headers = {"User-Agent": "Mozilla/5.0"}
         resposta = requests.get(url, headers=headers)
+        st.write("📡 Status da resposta:", resposta.status_code)  # Log do status HTTP
         dados = resposta.json()
-
+        st.write("📦 Resposta completa da API:")
+        
         if "items" in dados and len(dados["items"]) > 0:
             livro = dados["items"][0]["volumeInfo"]
 
